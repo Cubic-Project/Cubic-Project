@@ -326,11 +326,6 @@ function App() {
                 &copy; {new Date().getFullYear()} {siteConfig.title}. All rights reserved.
               </div>
 
-              <div className="flex gap-6">
-                <a href={`https://github.com/${siteConfig.githubOrg}`} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors duration-300">
-                  <Github size={20} />
-                </a>
-              </div>
             </div>
           </div>
         </footer>
