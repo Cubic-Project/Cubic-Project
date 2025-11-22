@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Theme Variables - Default (Minimal Zinc) */
+  --bg-background: 255 255 255;
+  --bg-surface: 249 250 251;
+  --bg-surface-hover: 243 244 246;
+  --color-primary: 24 24 27;
+  --color-primary-dark: 9 9 11;
+  --color-secondary: 82 82 91;
+  --text-main: 24 24 27;
+  --text-muted: 113 113 122;
+  --border-color: 228 228 231;
+
+  color-scheme: light;
+  background-color: rgb(var(--bg-background));
+  color: rgb(var(--text-main));
+  
+  /* Smooth transition for theme changes */
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Apply transitions to all elements for smooth theme switching */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+  
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-lg font-medium transition-all duration-200 hover:shadow-lg hover:shadow-primary/10 active:scale-[0.98];
+  }
+  
+  .btn-secondary {
+    @apply bg-background border border-border text-text-main hover:bg-surface-hover hover:border-secondary/20 px-6 py-2.5 rounded-lg font-medium transition-all duration-200 active:scale-[0.98];
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5 bg-background;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--border-color));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-secondary));
+}
