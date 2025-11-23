@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Code2, ChevronRight, Star, GitFork, Box, Terminal, BookOpen } from 'lucide-react';
+import { Github, ExternalLink, Code2, ChevronRight, Star, GitFork, Terminal, BookOpen } from 'lucide-react';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Giscus from '@giscus/react';
 import { siteConfig } from './config';
 import { themes, type Theme } from './lib/themes';
 import { ThemeSwitcher } from './components/ThemeSwitcher';
+import { Logo } from './components/Logo';
 
 // Types
 interface Repository {
@@ -78,8 +79,8 @@ function App() {
         {/* Navbar */}
         <nav className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-border/40 shadow-sm transition-colors duration-300">
           <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div className="flex items-center gap-2 text-xl font-bold tracking-tight">
-              <Box className="text-primary transition-colors duration-300" strokeWidth={2.5} />
+            <div className="flex items-center gap-3 text-xl font-bold tracking-tight">
+              <Logo />
               <span className="text-text-main transition-colors duration-300">{siteConfig.title}</span>
             </div>
             <div className="hidden md:flex space-x-8">
@@ -316,8 +317,8 @@ function App() {
         <footer className="py-12 border-t border-border bg-surface relative z-10 transition-colors duration-300">
           <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-              <div className="flex items-center gap-2 text-lg font-bold">
-                <Box className="text-primary transition-colors duration-300" size={20} />
+              <div className="flex items-center gap-3 text-lg font-bold">
+                <Logo />
                 <span className="text-text-main transition-colors duration-300">{siteConfig.title}</span>
               </div>
               
