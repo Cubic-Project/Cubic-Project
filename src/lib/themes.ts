@@ -17,19 +17,19 @@ export type Theme = {
 
 export const themes: Theme[] = [
   {
-    name: 'Minimal Zinc',
+    name: 'Earth Tones',
     id: 'default',
     type: 'light',
     colors: {
       background: '255 255 255',
-      surface: '249 250 251', // Gray 50
-      'surface-hover': '243 244 246', // Gray 100
-      primary: '24 24 27', // Zinc 950
-      'primary-dark': '9 9 11', // Zinc 950
-      secondary: '82 82 91', // Zinc 600
-      'text-main': '24 24 27', // Zinc 950
-      'text-muted': '113 113 122', // Zinc 500
-      border: '228 228 231', // Zinc 200
+      surface: '250 250 250',
+      'surface-hover': '245 245 245',
+      primary: '139 94 60', // #8B5E3C
+      'primary-dark': '140 94 83', // #8C5E53
+      secondary: '68 115 60', // #44733C
+      'text-main': '40 40 40',
+      'text-muted': '104 104 104', // #686868
+      border: '228 228 231',
     },
   },
   {
