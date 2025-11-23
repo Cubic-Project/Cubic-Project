@@ -58,10 +58,10 @@ export const siteConfig: SiteConfig = {
 
   // Giscus 评论系统配置
   giscus: {
-    repo: "Cubic-Project/cubic-site", // 替换为实际的 repo
-    repoId: "R_kgDOQawMgg", // 替换为实际的 repo ID
+    repo: "Cubic-Project/cubic", // 替换为实际的 repo
+    repoId: "", // 替换为实际的 repo ID
     category: "General",
-    categoryId: "DIC_kwDOQawMgs4ClC_l", // 替换为实际的 category ID
+    categoryId: "", // 替换为实际的 category ID
     mapping: "pathname",
     strict: "0",
     reactionsEnabled: "1",
