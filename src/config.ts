@@ -1,11 +1,14 @@
 import { Terminal, BookOpen, Users } from 'lucide-react';
+import type { SiteConfig } from './types';
 
-export const siteConfig = {
+export const siteConfig: SiteConfig = {
+  // 网站基础配置
   title: 'Cubic-Project',
   description: '构建 Minecraft 服务器技术的未来。Cubic-Project 致力于提供优质的开源工具与文档，让开服变得简单而有趣。',
-  url: 'https://cubic-project.github.io', // Replace with actual URL
+  url: 'https://cubic-project.github.io', // 替换为实际的 URL
   githubOrg: 'Cubic-Project',
   
+  // 首页 Hero 区域配置
   hero: {
     badge: '原 8aka-Team 全新升级',
     title: '构建 Minecraft 服务器技术的未来',
@@ -20,6 +23,7 @@ export const siteConfig = {
     }
   },
 
+  // Sapling 特色项目区域配置
   sapling: {
     title: 'Sapling',
     subtitle: 'Featured Project',
@@ -29,6 +33,7 @@ export const siteConfig = {
     linkText: '开始阅读'
   },
 
+  // 关于我们区域配置
   about: {
     title: '关于 Cubic-Project',
     description: 'Cubic-Project 是一个专注于 Minecraft 服务器技术的非官方团队。我们的前身是 8aka-Team，经过组织重组后以全新的面貌继续活跃于社区。',
@@ -36,26 +41,27 @@ export const siteConfig = {
       {
         icon: Terminal,
         title: "技术驱动",
-        desc: ""
+        desc: "我们使用前沿的技术栈构建工具，致力于提供最佳的用户体验。"
       },
       {
         icon: BookOpen,
         title: "知识共享",
-        desc: ""
+        desc: "我们相信知识应该被分享。我们的文档和教程旨在帮助更多人。"
       },
       {
         icon: Users,
         title: "社区共建",
-        desc: ""
+        desc: "我们欢迎任何人参与到项目中来，共同建设更好的 Minecraft 社区。"
       }
     ]
   },
 
+  // Giscus 评论系统配置
   giscus: {
-    repo: "Cubic-Project/cubic-site", // Replace with actual repo for comments
-    repoId: "R_kgDOQawMgg", // Replace with actual repo ID
+    repo: "Cubic-Project/cubic-site", // 替换为实际的 repo
+    repoId: "R_kgDOQawMgg", // 替换为实际的 repo ID
     category: "General",
-    categoryId: "DIC_kwDOQawMgs4ClC_l", // Replace with actual category ID
+    categoryId: "DIC_kwDOQawMgs4ClC_l", // 替换为实际的 category ID
     mapping: "pathname",
     strict: "0",
     reactionsEnabled: "1",
@@ -64,7 +70,40 @@ export const siteConfig = {
     theme: "light",
     lang: "zh-CN",
     loading: "lazy"
-  } as const,
+  },
 
+  // 导航栏配置
+  nav: {
+    items: [
+      { label: '首页', href: 'hero' },
+      { label: 'Sapling', href: 'sapling' },
+      { label: '项目列表', href: 'projects' },
+      { label: '关于我们', href: 'about' }
+    ],
+    github: {
+      display: true,
+      label: 'GitHub'
+    }
+  },
+
+  // 项目列表区域配置
+  projects: {
+    title: '开源项目',
+    description: '我们通过 GitHub 贡献代码，以下是我们最新的开源项目。',
+    defaultRepoDescription: '暂无描述'
+  },
+
+  // 评论区配置
+  comments: {
+    title: '留言板',
+    subtitle: '欢迎留下您的建议与反馈'
+  },
+
+  // 页脚配置
+  footer: {
+    copyright: 'All rights reserved.'
+  },
+
+  // 在项目列表中排除的仓库名称
   excludedRepos: ['NitWikit']
 };

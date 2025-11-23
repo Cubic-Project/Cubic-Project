@@ -83,28 +83,27 @@ function App() {
               <span className="text-text-main transition-colors duration-300">{siteConfig.title}</span>
             </div>
             <div className="hidden md:flex space-x-8">
-              {['首页', 'Sapling', '项目列表', '关于我们'].map((item, index) => {
-                const ids = ['hero', 'sapling', 'projects', 'about'];
-                return (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(ids[index])}
-                    className="text-text-muted hover:text-primary transition-colors duration-300 text-sm font-medium"
-                  >
-                    {item}
-                  </button>
-                );
-              })}
+              {siteConfig.nav.items.map((item: { label: string; href: string }) => (
+                <button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.href)}
+                  className="text-text-muted hover:text-primary transition-colors duration-300 text-sm font-medium"
+                >
+                  {item.label}
+                </button>
+              ))}
             </div>
-            <a
-              href={`https://github.com/${siteConfig.githubOrg}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-background hover:bg-surface border border-border transition-all duration-300 text-sm font-medium text-text-main"
-            >
-              <Github size={18} />
-              <span>GitHub</span>
-            </a>
+            {siteConfig.nav.github.display && (
+              <a
+                href={`https://github.com/${siteConfig.githubOrg}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-background hover:bg-surface border border-border transition-all duration-300 text-sm font-medium text-text-main"
+              >
+                <Github size={18} />
+                <span>{siteConfig.nav.github.label}</span>
+              </a>
+            )}
           </div>
         </nav>
 
@@ -161,7 +160,7 @@ function App() {
                     {siteConfig.sapling.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-10">
-                    {siteConfig.sapling.tags.map(tag => (
+                    {siteConfig.sapling.tags.map((tag: string) => (
                       <span key={tag} className="px-3 py-1 rounded-md bg-surface border border-border text-text-muted text-xs font-medium">
                         {tag}
                       </span>
@@ -194,9 +193,9 @@ function App() {
         <section id="projects" className="py-24 px-6 relative z-10">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-20">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-text-main">开源项目</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-text-main">{siteConfig.projects.title}</h2>
               <p className="text-text-muted text-lg max-w-2xl mx-auto font-light">
-                我们通过 GitHub 贡献代码，以下是我们最新的开源项目。
+                {siteConfig.projects.description}
               </p>
             </div>
 
@@ -234,7 +233,7 @@ function App() {
                     </h3>
                     
                     <p className="text-text-muted text-sm mb-6 flex-grow line-clamp-3 leading-relaxed font-light">
-                      {repo.description || '暂无描述'}
+                      {repo.description || siteConfig.projects.defaultRepoDescription}
                     </p>
                     
                     <div className="flex justify-between items-center pt-4 border-t border-border/50 text-xs text-text-muted">
@@ -292,8 +291,8 @@ function App() {
         <section className="py-24 px-6 relative z-10">
           <div className="container mx-auto max-w-4xl">
             <div className="text-center mb-12">
-              <h2 className="text-2xl font-bold mb-4 text-text-main">留言板</h2>
-              <p className="text-text-muted">欢迎留下您的建议与反馈</p>
+              <h2 className="text-2xl font-bold mb-4 text-text-main">{siteConfig.comments.title}</h2>
+              <p className="text-text-muted">{siteConfig.comments.subtitle}</p>
             </div>
             <Giscus
               id="comments"
@@ -323,7 +322,7 @@ function App() {
               </div>
               
               <div className="text-text-muted text-sm font-light transition-colors duration-300">
-                &copy; {new Date().getFullYear()} {siteConfig.title}. All rights reserved.
+                &copy; {new Date().getFullYear()} {siteConfig.title}. {siteConfig.footer.copyright}
               </div>
 
             </div>
