@@ -5,7 +5,7 @@ export const siteConfig: SiteConfig = {
   // 网站基础配置
   title: 'Cubic-Project',
   description: '构建 Minecraft 服务器技术的未来。Cubic-Project 致力于提供优质的开源工具与文档，让开服变得简单而有趣。',
-  url: 'https://cubic-project.github.io', // 替换为实际的 URL
+  url: 'https://cubic-project.github.io/Cubic-Project', // 替换为实际的 URL
   githubOrg: 'Cubic-Project',
   
   // 首页 Hero 区域配置
