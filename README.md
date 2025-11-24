@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# Cubic-Project 官网
 
-该模板提供了一个最小化的设置，以便在 Vite 中使 React 工作，支持 HMR（热模块替换）和一些 ESLint 规则。
+> **构建 Minecraft 服务器技术的未来**  
+> Cubic-Project 致力于提供优质的开源工具与文档，让开服变得简单而有趣。
 
-目前，有两个官方插件可用：
+这是 [Cubic-Project](https://github.com/Cubic-Project) 的官方门户网站源码。本项目采用 React + TypeScript 构建，旨在展示团队的开源项目、文档（如 Sapling）以及团队动态。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) 使用 [Babel](https://babeljs.io/)（或在 [rolldown-vite](https://vite.dev/guide/rolldown) 中使用时使用 [oxc](https://oxc.rs)）来实现快速刷新（Fast Refresh）
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) 使用 [SWC](https://swc.rs/) 来实现快速刷新（Fast Refresh）
+## 快速开始
 
-## React Compiler
+### 环境要求
 
-由于对开发和构建性能的影响，此模板未启用 React Compiler。如需添加，请参阅[此文档](https://react.dev/learn/react-compiler/installation)。
+- Node.js 
+- pnpm 
 
-## 扩展 ESLint 配置
+### 安装依赖
 
-如果您正在开发生产级应用程序，我们建议更新配置以启用类型感知的 lint 规则：
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // 其他配置...
-
-      // 移除 tseslint.configs.recommended 并替换为以下内容
-      tseslint.configs.recommendedTypeChecked,
-      // 或者，使用此项以获得更严格的规则
-      tseslint.configs.strictTypeChecked,
-      // 可选，添加此项以获得风格规则
-      tseslint.configs.stylisticTypeChecked,
-
-      // 其他配置...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // 其他选项...
-    },
-  },
-])
+```bash
+pnpm install
 ```
 
-您还可以安装 [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) 和 [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) 以获取 React 特定的 lint 规则：
+### 启动开发服务器
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // 其他配置...
-      // 启用 React 的 lint 规则
-      reactX.configs['recommended-typescript'],
-      // 启用 React DOM 的 lint 规则
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // 其他选项...
-    },
-  },
-])
+```bash
+pnpm dev
 ```
+
+访问 `http://localhost:5173` 查看效果。
+
+### 构建生产版本
+
+```bash
+pnpm build
+```
+
+构建产物将生成在 `dist` 目录下。
+
+## 配置指南
+
+项目的主要配置位于 `siteConfig` 对象中（ `src/config.ts` ）。可根据需要修改以下内容：
+
+### 1. 基础信息与 Hero 区域
+修改 `title`、`description` 以及 `hero` 对象来更新首页的标题、标语和主推按钮。
+
+### 2. Sapling (特色项目)
+在 `sapling` 对象中配置该区域的标题、描述以及跳转链接（如指向 NitWikit）。
+
+### 3. 项目列表 (GitHub Fetch)
+项目会自动抓取 `githubOrg` 配置下的仓库。
+- **排除特定仓库**：在 `excludedRepos` 数组中添加仓库名称（例如 `['NitWikit']`），这些仓库将不会出现在通用项目列表中。
+
+## 参与贡献
+
+欢迎提交 Pull Request 或 Issue！
+Cubic-Project 是一个非官方的 Minecraft 技术团队（原 8aka-Team），我们欢迎任何人参与到项目中来，共同建设更好的社区。
+
+## 许可证
+
+[![License](https://img.shields.io/github/license/Cubic-Project/Cubic-Project)](./LICENSE)  
+
+[![CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+本项目源码遵循 MIT 协议。
+文档及网站内容遵循 CC BY-NC-SA 4.0 协议。
