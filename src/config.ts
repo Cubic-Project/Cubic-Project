@@ -105,5 +105,5 @@ export const siteConfig: SiteConfig = {
   },
 
   // 在项目列表中排除的仓库名称
-  excludedRepos: ['NitWikit']
+  excludedRepos: ['NitWikit' ,'.github']
 };
