@@ -1,0 +1,17 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # 启用 npm 的版本更新检查
+  - package-ecosystem: "npm"
+    #  package.json 所在的目录
+    directory: "/"
+    # 检查更新的频率
+    schedule:
+      interval: "daily" # 每天检查一次
+    # 给 Dependabot 创建的 PR 自动打上标签
+    labels:
+      - "dependencies"
