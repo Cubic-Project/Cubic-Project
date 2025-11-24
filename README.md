@@ -3,7 +3,7 @@
 > **构建 Minecraft 服务器技术的未来**  
 > Cubic-Project 致力于提供优质的开源工具与文档，让开服变得简单而有趣。
 
-这是 [Cubic-Project](https://github.com/Cubic-Project) 的官方门户网站源码。本项目采用 React + TypeScript 构建，旨在展示团队的开源项目、文档（如 Sapling）以及团队动态。
+这是 [Cubic-Project](https://github.com/Cubic-Project) 的官方门户网站源码。本项目采用 React + TypeScript + Vite 构建，旨在展示团队的开源项目、文档（如 Sapling）以及团队动态。
 
 ## 快速开始
 
