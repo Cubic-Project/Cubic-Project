@@ -1,43 +1,74 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@theme {
+  --font-sans: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
 
-  /* Theme Variables - Default (Minimal Zinc) */
-  --bg-background: 255 255 255;
-  --bg-surface: 249 250 251;
-  --bg-surface-hover: 243 244 246;
-  --color-primary: 24 24 27;
-  --color-primary-dark: 9 9 11;
-  --color-secondary: 82 82 91;
-  --text-main: 24 24 27;
-  --text-muted: 113 113 122;
-  --border-color: 228 228 231;
+  --color-background: rgb(var(--background));
+  --color-surface: rgb(var(--surface));
+  --color-surface-hover: rgb(var(--surface-hover));
+  --color-primary: rgb(var(--primary));
+  --color-primary-dark: rgb(var(--primary-dark));
+  --color-secondary: rgb(var(--secondary));
+  --color-text-main: rgb(var(--text-main));
+  --color-text-muted: rgb(var(--text-muted));
+  --color-border: rgb(var(--border));
 
-  color-scheme: light;
-  background-color: rgb(var(--bg-background));
-  color: rgb(var(--text-main));
-  
-  /* Smooth transition for theme changes */
-  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-slide-up: slideUp 0.5s ease-out;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes slideUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
 }
 
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+@layer base {
+  :root {
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-/* Apply transitions to all elements for smooth theme switching */
-*, *::before, *::after {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+    /* Theme Variables - Default (Minimal Zinc) */
+    --background: 255 255 255;
+    --surface: 249 250 251;
+    --surface-hover: 243 244 246;
+    --primary: 24 24 27;
+    --primary-dark: 9 9 11;
+    --secondary: 82 82 91;
+    --text-main: 24 24 27;
+    --text-muted: 113 113 122;
+    --border: 228 228 231;
+
+    color-scheme: light;
+    background-color: rgb(var(--background));
+    color: rgb(var(--text-main));
+    
+    /* Smooth transition for theme changes */
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Apply transitions to all elements for smooth theme switching */
+  *, *::before, *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
 }
 
 @layer utilities {
@@ -68,10 +99,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--border-color));
+  background: rgb(var(--border));
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--color-secondary));
+  background: rgb(var(--secondary));
 }

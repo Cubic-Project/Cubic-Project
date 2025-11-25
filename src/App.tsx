@@ -29,15 +29,9 @@ function App() {
     const root = document.documentElement;
     const colors = currentTheme.colors;
     
-    root.style.setProperty('--bg-background', colors.background);
-    root.style.setProperty('--bg-surface', colors.surface);
-    root.style.setProperty('--bg-surface-hover', colors['surface-hover']);
-    root.style.setProperty('--color-primary', colors.primary);
-    root.style.setProperty('--color-primary-dark', colors['primary-dark']);
-    root.style.setProperty('--color-secondary', colors.secondary);
-    root.style.setProperty('--text-main', colors['text-main']);
-    root.style.setProperty('--text-muted', colors['text-muted']);
-    root.style.setProperty('--border-color', colors.border);
+    Object.entries(colors).forEach(([key, value]) => {
+      root.style.setProperty(`--${key}`, value);
+    });
   }, [currentTheme]);
 
   useEffect(() => {
