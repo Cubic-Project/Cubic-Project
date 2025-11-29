@@ -1,4 +1,5 @@
 import { type LucideIcon } from 'lucide-react';
+import { type Oklch } from 'culori';
 
 export interface SiteConfig {
   title: string;
@@ -81,4 +82,43 @@ export interface SiteConfig {
   };
 
   excludedRepos: string[];
+}
+
+export type SceneType = 'light' | 'normal' | 'contrast';
+
+export interface SceneConfig {
+    id: SceneType;
+    nameKey: string;
+    descKey: string;
+    icon: string;
+    targetL: { min: number; max: number } | null;
+    apcaTarget: { min: number; max: number; optimal: number; reference: 'white' | 'black' } | null;
+    usageKey: string;
+}
+
+export interface ColorData {
+    id: string;
+    hex: string;
+    oklch: Oklch;
+    source: 'user' | 'adjusted';
+}
+
+export interface AnalysisIssue {
+    type: 'warning' | 'error';
+    message: string;
+    value?: number;
+}
+
+export interface HarmonyAnalysis {
+    primaryConsistency: boolean;
+    targetLCompliance: boolean;
+    issues: AnalysisIssue[];
+}
+
+export interface PaletteVariation {
+    id: string;
+    name: string;
+    description: string;
+    colors: Record<string, string>;
+    previewColors: string[];
 }
