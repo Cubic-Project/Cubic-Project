@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { Github, ExternalLink, Code2, ChevronRight, Star, GitFork, Terminal, BookOpen, Menu, X } from 'lucide-react';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -19,6 +19,55 @@ interface Repository {
   forks_count: number;
   archived: boolean;
 }
+
+// Animation Variants
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 10
+    }
+  },
+};
+
+const mobileMenuVariants: Variants = {
+  closed: { 
+    opacity: 0, 
+    height: 0,
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1
+    }
+  },
+  open: { 
+    opacity: 1, 
+    height: 'auto',
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const mobileItemVariants: Variants = {
+  closed: { opacity: 0, x: -20 },
+  open: { opacity: 1, x: 0 }
+};
 
 function App() {
   const [repos, setRepos] = useState<Repository[]>([]);
@@ -116,23 +165,26 @@ function App() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
+              variants={mobileMenuVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
               className="fixed top-[73px] left-0 w-full bg-surface/95 backdrop-blur-xl border-b border-border/50 z-40 md:hidden overflow-hidden"
             >
               <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
                 {siteConfig.nav.items.map((item: { label: string; href: string }) => (
-                  <button
+                  <motion.button
                     key={item.label}
+                    variants={mobileItemVariants}
                     onClick={() => scrollToSection(item.href)}
                     className="text-left py-3 px-4 rounded-xl hover:bg-surface-hover text-text-main font-medium transition-colors"
                   >
                     {item.label}
-                  </button>
+                  </motion.button>
                 ))}
                 {siteConfig.nav.github.display && (
-                  <a
+                  <motion.a
+                    variants={mobileItemVariants}
                     href={`https://github.com/${siteConfig.githubOrg}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -140,7 +192,7 @@ function App() {
                   >
                     <Github size={20} />
                     <span>{siteConfig.nav.github.label}</span>
-                  </a>
+                  </motion.a>
                 )}
               </div>
             </motion.div>
@@ -151,21 +203,21 @@ function App() {
         <section id="hero" className="relative pt-40 pb-32 px-6 z-10">
           <div className="container mx-auto text-center max-w-4xl">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-semibold mb-8 tracking-wide uppercase">
+              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-semibold mb-8 tracking-wide uppercase">
                 {siteConfig.hero.badge}
-              </div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight tracking-tight text-text-main">
+              </motion.div>
+              <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold mb-8 leading-tight tracking-tight text-text-main">
                 构建 <span className="text-gradient">Minecraft</span> <br />
                 服务器技术的未来
-              </h1>
-              <p className="text-xl text-text-muted mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+              </motion.h1>
+              <motion.p variants={itemVariants} className="text-xl text-text-muted mb-12 max-w-2xl mx-auto leading-relaxed font-light">
                 {siteConfig.hero.description}
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
+              </motion.p>
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center gap-4">
                 <button onClick={() => scrollToSection('projects')} className="btn-primary flex items-center justify-center gap-2 group shadow-lg shadow-primary/20">
                   <Code2 size={20} className="group-hover:rotate-12 transition-transform" />
                   {siteConfig.hero.primaryAction.label}
@@ -174,7 +226,7 @@ function App() {
                   <BookOpen size={20} className="group-hover:scale-110 transition-transform" />
                   {siteConfig.hero.secondaryAction.label}
                 </button>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </section>
@@ -217,12 +269,16 @@ function App() {
                 </div>
                 
                 <div className="flex-1 flex justify-center items-center">
-                  <div className="relative w-64 h-64 md:w-80 md:h-80 animate-float">
+                  <motion.div 
+                    className="relative w-64 h-64 md:w-80 md:h-80 animate-float"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
                     <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-secondary/10 rounded-full blur-3xl"></div>
                     <div className="relative w-full h-full bg-background border border-border/50 rounded-3xl flex items-center justify-center shadow-2xl transform rotate-3 group-hover:rotate-0 transition-transform duration-500">
                       <span className="text-9xl filter drop-shadow-sm">🌱</span>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>

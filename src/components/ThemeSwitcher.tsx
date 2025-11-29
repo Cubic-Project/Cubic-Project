@@ -10,6 +10,21 @@ import {
   type SceneType
 } from '../lib/color-utils';
 
+const listContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05
+    }
+  }
+};
+
+const listItemVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: { opacity: 1, x: 0 }
+};
+
 interface ThemeSwitcherProps {
   currentTheme: Theme;
   onThemeChange: (theme: Theme) => void;
@@ -80,6 +95,7 @@ export function ThemeSwitcher({ currentTheme, onThemeChange }: ThemeSwitcherProp
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            layout
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -115,9 +131,15 @@ export function ThemeSwitcher({ currentTheme, onThemeChange }: ThemeSwitcherProp
             {/* Content */}
             <div className="p-2 bg-surface/50 overflow-y-auto custom-scrollbar">
               {mode === 'presets' ? (
-                <div className="space-y-1">
+                <motion.div 
+                  variants={listContainerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="space-y-1"
+                >
                   {themes.map((theme) => (
-                    <button
+                    <motion.button
+                      variants={listItemVariants}
                       key={theme.id}
                       onClick={() => {
                         onThemeChange(theme);
@@ -152,9 +174,9 @@ export function ThemeSwitcher({ currentTheme, onThemeChange }: ThemeSwitcherProp
                           )}
                         </div>
                       </div>
-                    </button>
+                    </motion.button>
                   ))}
-                </div>
+                </motion.div>
               ) : (
                 <div className="p-4 space-y-6">
                   {/* Primary Color Picker */}
@@ -207,13 +229,23 @@ export function ThemeSwitcher({ currentTheme, onThemeChange }: ThemeSwitcherProp
 
                   {/* Generated Variations */}
                   {variations.length > 0 && (
-                    <div className="space-y-3">
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      className="space-y-3"
+                    >
                       <label className="text-xs font-semibold text-text-muted uppercase tracking-wider">
                         Generated Palettes
                       </label>
-                      <div className="grid grid-cols-1 gap-2">
+                      <motion.div 
+                        variants={listContainerVariants}
+                        initial="hidden"
+                        animate="visible"
+                        className="grid grid-cols-1 gap-2"
+                      >
                         {variations.map((variation) => (
-                          <button
+                          <motion.button
+                            variants={listItemVariants}
                             key={variation.id}
                             onClick={() => applyVariation(variation)}
                             className={`w-full flex items-center gap-3 p-2 rounded-xl border transition-all duration-200 ${
@@ -231,10 +263,10 @@ export function ThemeSwitcher({ currentTheme, onThemeChange }: ThemeSwitcherProp
                                 <div className="text-sm font-medium text-text-main">{variation.name}</div>
                                 <div className="text-xs text-text-muted">{variation.description}</div>
                             </div>
-                          </button>
+                          </motion.button>
                         ))}
-                      </div>
-                    </div>
+                      </motion.div>
+                    </motion.div>
                   )}
 
                   {/* Reset Button */}
