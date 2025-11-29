@@ -84,7 +84,7 @@ export function ThemeSwitcher({ currentTheme, onThemeChange }: ThemeSwitcherProp
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute bottom-full right-0 mb-4 bg-surface/90 backdrop-blur-xl border border-border/50 shadow-2xl rounded-2xl min-w-[320px] overflow-hidden flex flex-col"
+            className="absolute bottom-full right-0 mb-4 bg-surface/90 backdrop-blur-xl border border-border/50 shadow-2xl rounded-2xl w-[calc(100vw-3rem)] sm:w-80 max-h-[80vh] overflow-hidden flex flex-col origin-bottom-right"
           >
             {/* Header with Tabs */}
             <div className="flex border-b border-border/50 bg-surface/80">
@@ -113,9 +113,9 @@ export function ThemeSwitcher({ currentTheme, onThemeChange }: ThemeSwitcherProp
             </div>
 
             {/* Content */}
-            <div className="p-2 bg-surface/50">
+            <div className="p-2 bg-surface/50 overflow-y-auto custom-scrollbar">
               {mode === 'presets' ? (
-                <div className="space-y-1 max-h-[400px] overflow-y-auto custom-scrollbar">
+                <div className="space-y-1">
                   {themes.map((theme) => (
                     <button
                       key={theme.id}

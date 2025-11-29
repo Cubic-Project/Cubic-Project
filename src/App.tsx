@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Github, ExternalLink, Code2, ChevronRight, Star, GitFork, Terminal, BookOpen } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Github, ExternalLink, Code2, ChevronRight, Star, GitFork, Terminal, BookOpen, Menu, X } from 'lucide-react';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Giscus from '@giscus/react';
@@ -24,6 +24,7 @@ function App() {
   const [repos, setRepos] = useState<Repository[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentTheme, setCurrentTheme] = useState<Theme>(themes[0]);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -55,6 +56,7 @@ function App() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
+      setIsMobileMenuOpen(false);
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -99,8 +101,51 @@ function App() {
                 <span>{siteConfig.nav.github.label}</span>
               </a>
             )}
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2 text-text-main hover:bg-surface rounded-lg transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </nav>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="fixed top-[73px] left-0 w-full bg-surface/95 backdrop-blur-xl border-b border-border/50 z-40 md:hidden overflow-hidden"
+            >
+              <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+                {siteConfig.nav.items.map((item: { label: string; href: string }) => (
+                  <button
+                    key={item.label}
+                    onClick={() => scrollToSection(item.href)}
+                    className="text-left py-3 px-4 rounded-xl hover:bg-surface-hover text-text-main font-medium transition-colors"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+                {siteConfig.nav.github.display && (
+                  <a
+                    href={`https://github.com/${siteConfig.githubOrg}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 py-3 px-4 rounded-xl hover:bg-surface-hover text-text-main font-medium transition-colors"
+                  >
+                    <Github size={20} />
+                    <span>{siteConfig.nav.github.label}</span>
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Hero Section */}
         <section id="hero" className="relative pt-40 pb-32 px-6 z-10">
