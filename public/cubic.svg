@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <style>
+      .fill { fill: #6b8cff; }
+      .stroke { stroke: #6b8cff; }
+    </style>
+  </defs>
+  <path d="M4 9L12 5L10 2L2 6L4 9Z" class="fill" opacity="0.3"/>
+  <path d="M4 9L12 5L10 2L2 6L4 9" class="stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12 5L20 9L22 6L14 2L12 5Z" class="fill" opacity="0.3"/>
+  <path d="M12 5L20 9L22 6L14 2L12 5" class="stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M4 9L12 13L20 9L12 5L4 9Z" class="fill" opacity="0.1"/>
+  <path d="M4 9L12 13V21L4 17V9Z" class="fill" opacity="0.8"/>
+  <path d="M12 13L20 9V17L12 21V13Z" class="fill" opacity="0.6"/>
+  <path d="M4 9V17L12 21L20 17V9" class="stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12 21V13" class="stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M4 9L12 13L10 16L2 12L4 9Z" class="fill" opacity="0.5"/>
+  <path d="M4 9L12 13L10 16L2 12L4 9" class="stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12 13L20 9L22 12L14 16L12 13Z" class="fill" opacity="0.4"/>
+  <path d="M12 13L20 9L22 12L14 16L12 13" class="stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
