@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">
   <defs>
     <style>
-      .fill { fill: #6b8cff; }
-      .stroke { stroke: #6b8cff; }
+      .fill { fill: #8B5E3C; }
+      .stroke { stroke: #8B5E3C; }
     </style>
   </defs>
   <path d="M4 9L12 5L10 2L2 6L4 9Z" class="fill" opacity="0.3"/>
