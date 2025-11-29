@@ -1,7 +1,14 @@
 # Cubic-Project 官网
 
-> **构建 Minecraft 服务器技术的未来**  
-> Cubic-Project 致力于提供优质的开源工具与文档，让开服变得简单而有趣。
+<div align="center">
+
+**Cubic-Project 致力于提供优质的开源工具与文档，让开服变得简单而有趣。**
+
+[![React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7.2-646CFF?logo=vite)](https://vitejs.dev/)
+
+</div>
 
 这是 [Cubic-Project](https://github.com/Cubic-Project) 的官方门户网站源码。本项目采用 React + TypeScript + Vite 构建，旨在展示团队的开源项目、文档（如 Sapling）以及团队动态。
 
@@ -9,8 +16,8 @@
 
 ### 环境要求
 
-- Node.js 
-- pnpm 
+- Node.js
+- pnpm
 
 ### 安装依赖
 
@@ -39,13 +46,17 @@ pnpm build
 项目的主要配置位于 `siteConfig` 对象中（ `src/config.ts` ）。可根据需要修改以下内容：
 
 ### 1. 基础信息与 Hero 区域
+
 修改 `title`、`description` 以及 `hero` 对象来更新首页的标题、标语和主推按钮。
 
 ### 2. Sapling (特色项目)
+
 在 `sapling` 对象中配置该区域的标题、描述以及跳转链接（如指向 NitWikit）。
 
 ### 3. 项目列表 (GitHub Fetch)
+
 项目会自动抓取 `githubOrg` 配置下的仓库。
+
 - **排除特定仓库**：在 `excludedRepos` 数组中添加仓库名称（例如 `['NitWikit']`），这些仓库将不会出现在通用项目列表中。
 
 ## 参与贡献
